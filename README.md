@@ -8,6 +8,7 @@ To create a project setup similar to this one, follow these steps:
 
 -   `create-vite@latest` Create a vite app, selecting the React/Typescript template.
 -   `npm install` Install all the dependencies.
+-   `npm install boostrap@latest`
 
 ## Automated README contents
 
