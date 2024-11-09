@@ -1,9 +1,9 @@
-import Message from "./Message";
+import ModuleList from "./components/ModuleList";
 
 function App() {
 	return (
 		<div>
-			<Message />
+			<ModuleList />
 		</div>
 	);
 }
