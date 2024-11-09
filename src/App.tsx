@@ -1,34 +1,18 @@
-import { useState } from "react";
-import Alert from "./components/Alert";
-import Button from "./components/Button";
-import ListGroup from "./components/ListGroup";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import ModuleList from "./pages/ModuleList";
+import ModuleDetails from "./pages/ModuleDetails";
+import Layout from "./layout/Layout";
 
 function App() {
-	let modules = [
-		"Phandelver and Below: The Shattered Obelisk",
-		"Tales from the Yawning Portal",
-		"Dungeon of the Mad Mage",
-		"Curse of Strahd",
-	];
-
-	const [showAlert, setShowAlert] = useState(false);
-
 	return (
-		<div>
-			<ListGroup
-				heading="Modules"
-				items={modules}
-				onSelectItem={(item) => console.log(item)}
-			/>
-
-			{showAlert && (
-				<Alert onClose={() => setShowAlert(false)}>Hello world!</Alert>
-			)}
-
-			<Button style="primary" onClick={() => setShowAlert(!showAlert)}>
-				{`${showAlert ? "Hide" : "Show"} alert`}
-			</Button>
-		</div>
+		<Router>
+			<Routes>
+				<Route element={<Layout />}>
+					<Route path="/" element={<ModuleList />} />
+					<Route path="/module" element={<ModuleDetails />} />
+				</Route>
+			</Routes>
+		</Router>
 	);
 }
 
