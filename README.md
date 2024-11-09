@@ -10,6 +10,10 @@ To create a project setup similar to this one, follow these steps:
 -   `npm install` Install all the dependencies.
 -   `npm install boostrap@latest`
 
+## React snippets
+
+-   `rafce` Create a default React arrow function
+
 ## Automated README contents
 
 ### React + TypeScript + Vite

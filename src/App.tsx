@@ -1,3 +1,6 @@
+import { useState } from "react";
+import Alert from "./components/Alert";
+import Button from "./components/Button";
 import ListGroup from "./components/ListGroup";
 
 function App() {
@@ -8,6 +11,8 @@ function App() {
 		"Curse of Strahd",
 	];
 
+	const [showAlert, setShowAlert] = useState(false);
+
 	return (
 		<div>
 			<ListGroup
@@ -15,6 +20,14 @@ function App() {
 				items={modules}
 				onSelectItem={(item) => console.log(item)}
 			/>
+
+			{showAlert && (
+				<Alert onClose={() => setShowAlert(false)}>Hello world!</Alert>
+			)}
+
+			<Button style="primary" onClick={() => setShowAlert(!showAlert)}>
+				{`${showAlert ? "Hide" : "Show"} alert`}
+			</Button>
 		</div>
 	);
 }
