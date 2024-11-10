@@ -34,10 +34,8 @@ const Navbar = ({ mode, setMode }: ThemeProps) => {
 							<Button color="inherit">Details</Button>
 						</Link>
 					</Box>
-					<ThemeSelector
-						mode={mode}
-						setMode={(value) => setMode(value)}
-					/>
+
+					<ThemeSelector mode={mode} setMode={setMode} />
 				</Toolbar>
 			</Container>
 		</AppBar>

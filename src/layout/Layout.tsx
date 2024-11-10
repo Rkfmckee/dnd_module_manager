@@ -9,10 +9,6 @@ const Layout = () => {
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 	const [mode, setMode] = useState<ThemeMode>("system");
 
-	const setThemeMode = (item: ThemeMode) => {
-		setMode(item);
-	};
-
 	const themeToPalette = (themeMode: ThemeMode) => {
 		if (themeMode == "dark" || themeMode == "light") return themeMode;
 		if (themeMode == "system") {
@@ -30,7 +26,7 @@ const Layout = () => {
 	return (
 		<>
 			<ThemeProvider theme={theme}>
-				<Navbar mode={mode} setMode={(value) => setThemeMode(value)} />
+				<Navbar mode={mode} setMode={setMode} />
 				<main>
 					<Container maxWidth="xl">
 						{/* Outlet will render all child Route components
