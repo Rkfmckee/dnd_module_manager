@@ -1,23 +1,46 @@
+import {
+	AppBar,
+	Box,
+	Button,
+	Container,
+	Toolbar,
+	Typography,
+} from "@mui/material";
+import ThemeSelector, { ThemeProps } from "./ThemeSelector";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ mode, setMode }: ThemeProps) => {
 	return (
-		<nav className="navbar navbar-expand-lg navbar-light bg-light">
-			<div className="container">
-				<Link className="navbar-brand" to="/">
-					D&D Module Manager
-				</Link>
-				<div className="collapse navbar-collapse" id="navbarNav">
-					<ul className="navbar-nav">
-						<li className="nav-item">
-							<Link className="nav-link" to="/module">
-								Details
-							</Link>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+		<AppBar position="static">
+			<Container maxWidth="xl">
+				<Toolbar disableGutters>
+					<Link to="/" className="nav-link">
+						<Typography
+							variant="h6"
+							component="span"
+							sx={{ mr: 2 }}
+						>
+							D&D Module Manager
+						</Typography>
+					</Link>
+
+					<Box
+						sx={{
+							flexGrow: 1,
+							display: "flex",
+						}}
+					>
+						<Link to="/module" className="nav-link">
+							<Button color="inherit">Details</Button>
+						</Link>
+					</Box>
+					<ThemeSelector
+						mode={mode}
+						setMode={(value) => setMode(value)}
+					/>
+				</Toolbar>
+			</Container>
+		</AppBar>
 	);
 };
 
