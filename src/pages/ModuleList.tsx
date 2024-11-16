@@ -1,18 +1,16 @@
 import ListGroup from "../components/ListGroup";
+import Modules from "../assets/modules.json";
 
 const ModuleList = () => {
-	let modules = [
-		"Phandelver and Below: The Shattered Obelisk",
-		"Tales from the Yawning Portal",
-		"Dungeon of the Mad Mage",
-		"Curse of Strahd",
-	];
-
 	return (
 		<>
 			<ListGroup
 				heading="Modules"
-				items={modules}
+				items={Modules.map((module) =>
+					module.subtitle == ""
+						? `${module.title}`
+						: `${module.title}: ${module.subtitle}`
+				)}
 				onSelectItem={(item) => console.log(item)}
 			/>
 		</>

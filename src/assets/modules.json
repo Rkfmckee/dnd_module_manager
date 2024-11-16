@@ -1,0 +1,44 @@
+[
+	{
+		"id": 0,
+		"title": "Phandelver and Below",
+		"subtitle": "The Shattered Obelisk",
+		"details": "A classic D&D module with all the tropes and stereotypes you could possibly hope for!",
+		"image": "/images/phandelver.jpg"
+	},
+	{
+		"id": 1,
+		"title": "Tales from the Yawning Portal",
+		"subtitle": "The Sunless Citadel",
+		"details": "The first adventure introducing the Yawning Portal and all it's many misadventures.",
+		"image": "/images/sunless_citadel.png"
+	},
+	{
+		"id": 2,
+		"title": "Tales from the Yawning Portal",
+		"subtitle": "The Forge of Fury",
+		"details": "Search for the lost forge of a legendary smith in search of priceless weapons.",
+		"image": "/images/forge_of_fury.jpg"
+	},
+	{
+		"id": 3,
+		"title": "Waterdeep",
+		"subtitle": "Dragon Heist",
+		"details": "Delve into the legendary city of Waterdeep in this level 1 - 5 adventure.",
+		"image": "/images/dragon_heist.jpg"
+	},
+	{
+		"id": 4,
+		"title": "Waterdeep",
+		"subtitle": "Dungeon of the Mad Mage",
+		"details": "As chaotic as the city of Waterdeep might be, it's nothing compared to what lies just beneath the surface.",
+		"image": "/images/mad_mage.jpg"
+	},
+	{
+		"id": 5,
+		"title": "Curse of Strahd",
+		"subtitle": "",
+		"details": "Battle countless hordes of undead in this classic campaign of Gothic Horror.",
+		"image": "/images/strahd.jpeg"
+	}
+]
