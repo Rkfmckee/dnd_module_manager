@@ -1,18 +1,22 @@
-import ListGroup from "../components/ListGroup";
+import Typography from "@mui/material/Typography";
 import Modules from "../assets/modules.json";
+import ModuleCard from "../components/ModuleCard";
+import Grid from "@mui/material/Grid2";
 
 const ModuleList = () => {
 	return (
 		<>
-			<ListGroup
-				heading="Modules"
-				items={Modules.map((module) =>
-					module.subtitle == ""
-						? `${module.title}`
-						: `${module.title}: ${module.subtitle}`
-				)}
-				onSelectItem={(item) => console.log(item)}
-			/>
+			<Typography gutterBottom variant="h2" component="div">
+				Modules
+			</Typography>
+
+			<Grid container spacing={2}>
+				{Modules.map((module) => (
+					<Grid key={`module-${module.id}`} size={4}>
+						<ModuleCard module={module} />
+					</Grid>
+				))}
+			</Grid>
 		</>
 	);
 };

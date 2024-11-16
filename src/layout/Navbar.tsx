@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = ({ mode, setMode }: ThemeProps) => {
 	return (
-		<AppBar position="static">
+		<AppBar position="static" className="mb-4">
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
 					<Link to="/" className="nav-link">
