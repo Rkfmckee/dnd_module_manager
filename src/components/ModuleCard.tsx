@@ -4,20 +4,12 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Module } from "../models/Module";
+import { Module } from "../helpers/Types";
+import { GetSubtitleElement } from "../helpers/ModuleHelpers";
+import { Link } from "react-router-dom";
 
 interface ModuleCardParams {
 	module: Module;
-}
-
-function getSubtitleElement(module: Module) {
-	if (module.subtitle)
-		return (
-			<Typography variant="subtitle1" component="div">
-				{module.subtitle}
-			</Typography>
-		);
-	else return "";
 }
 
 export default function ModuleCard({ module }: ModuleCardParams) {
@@ -33,7 +25,7 @@ export default function ModuleCard({ module }: ModuleCardParams) {
 					<Typography variant="h5" component="div">
 						{module.title}
 					</Typography>
-					{getSubtitleElement(module)}
+					{GetSubtitleElement(module)}
 				</div>
 
 				<Typography variant="body2" sx={{ color: "text.secondary" }}>
@@ -41,7 +33,9 @@ export default function ModuleCard({ module }: ModuleCardParams) {
 				</Typography>
 			</CardContent>
 			<CardActions>
-				<Button size="small">View more</Button>
+				<Button component={Link} to={`module/${module.id}`}>
+					View more
+				</Button>
 			</CardActions>
 		</Card>
 	);

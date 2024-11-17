@@ -30,9 +30,9 @@ const Navbar = ({ mode, setMode }: ThemeProps) => {
 							display: "flex",
 						}}
 					>
-						<Link to="/module" className="nav-link">
-							<Button color="inherit">Details</Button>
-						</Link>
+						<Button component={Link} to="" color="white">
+							About
+						</Button>
 					</Box>
 
 					<ThemeSelector mode={mode} setMode={setMode} />

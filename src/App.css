@@ -1,0 +1,21 @@
+.hero-image {
+	width: 100vw;
+	margin-left: calc((-100vw + 100%) / 2);
+	margin-right: calc((-100vw + 100%) / 2);
+	background-position: center;
+	background-size: cover, cover;
+	height: fit-content;
+	color: #fafafc;
+	text-align: center;
+	align-items: center;
+}
+
+.hero-text {
+	padding-top: 15em;
+	padding-bottom: 15em;
+}
+
+.mui-link {
+	color: white;
+	text-decoration: none;
+}
