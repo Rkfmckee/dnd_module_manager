@@ -5,7 +5,7 @@ import { ThemeMode } from "./ThemeSelector";
 import { useState } from "react";
 import { createTheme } from "@mui/material/styles";
 import Container from "@mui/material/Container";
-import { useMediaQuery } from "@mui/material";
+import { CssBaseline, useMediaQuery } from "@mui/material";
 
 const Layout = () => {
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -31,6 +31,7 @@ const Layout = () => {
 	return (
 		<>
 			<ThemeProvider theme={theme}>
+				<CssBaseline />
 				<Navbar mode={mode} setMode={setMode} />
 				<main>
 					<Container maxWidth="xl">
