@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar/Navbar";
 import { ThemeProvider } from "@emotion/react";
 import { ThemeMode } from "./ThemeSelector";
 import { useState } from "react";

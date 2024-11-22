@@ -1,13 +1,7 @@
-import {
-	AppBar,
-	Box,
-	Button,
-	Container,
-	Toolbar,
-	Typography,
-} from "@mui/material";
-import ThemeSelector, { ThemeProps } from "./ThemeSelector";
+import { AppBar, Box, Container, Toolbar, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import ThemeSelector, { ThemeProps } from "../ThemeSelector";
+import Navlink from "./Navlink";
 
 const Navbar = ({ mode, setMode }: ThemeProps) => {
 	return (
@@ -31,9 +25,8 @@ const Navbar = ({ mode, setMode }: ThemeProps) => {
 							marginTop: "0.25em",
 						}}
 					>
-						<Button component={Link} to="About" color="white">
-							About
-						</Button>
+						<Navlink to="items" />
+						<Navlink to="about" />
 					</Box>
 
 					<ThemeSelector mode={mode} setMode={setMode} />

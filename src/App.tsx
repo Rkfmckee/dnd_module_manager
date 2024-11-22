@@ -5,6 +5,7 @@ import Layout from "./layout/Layout";
 import NotFound from "./pages/status/NotFound";
 import "./App.css";
 import About from "./pages/About";
+import ItemList from "./pages/ItemList";
 
 function App() {
 	return (
@@ -16,7 +17,8 @@ function App() {
 						path="module/:moduleId"
 						element={<ModuleDetails />}
 					/>
-					<Route path="About" element={<About />} />
+					<Route path="items" element={<ItemList />} />
+					<Route path="about" element={<About />} />
 					<Route path="*" element={<NotFound />} />
 				</Route>
 			</Routes>
