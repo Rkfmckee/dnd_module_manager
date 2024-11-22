@@ -28,9 +28,10 @@ const Navbar = ({ mode, setMode }: ThemeProps) => {
 						sx={{
 							flexGrow: 1,
 							display: "flex",
+							marginTop: "0.25em",
 						}}
 					>
-						<Button component={Link} to="" color="white">
+						<Button component={Link} to="About" color="white">
 							About
 						</Button>
 					</Box>

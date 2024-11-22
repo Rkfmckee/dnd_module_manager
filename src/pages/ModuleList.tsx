@@ -6,7 +6,7 @@ import Grid from "@mui/material/Grid2";
 const ModuleList = () => {
 	return (
 		<>
-			<Typography gutterBottom variant="h2" component="div">
+			<Typography gutterBottom variant="h1" component="div">
 				Modules
 			</Typography>
 

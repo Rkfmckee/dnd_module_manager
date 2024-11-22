@@ -4,6 +4,7 @@ import ModuleDetails from "./pages/ModuleDetails";
 import Layout from "./layout/Layout";
 import NotFound from "./pages/status/NotFound";
 import "./App.css";
+import About from "./pages/About";
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 						path="module/:moduleId"
 						element={<ModuleDetails />}
 					/>
+					<Route path="About" element={<About />} />
 					<Route path="*" element={<NotFound />} />
 				</Route>
 			</Routes>
