@@ -31,7 +31,7 @@ const Layout = () => {
 	return (
 		<>
 			<ThemeProvider theme={theme}>
-				<CssBaseline />
+				<CssBaseline /> {/* Use theme for page background */}
 				<Navbar mode={mode} setMode={setMode} />
 				<main>
 					<Container maxWidth="xl">
