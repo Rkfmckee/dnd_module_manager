@@ -8,8 +8,37 @@ import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import Items from "../assets/items.json";
 import { Item } from "../helpers/Types";
+import TableFooter from "@mui/material/TableFooter";
+import TablePagination from "@mui/material/TablePagination";
+import { useState } from "react";
+import { TablePaginationActionsProps } from "@mui/material/TablePagination/TablePaginationActions";
+import { useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import LastPageIcon from "@mui/icons-material/LastPage";
 
 export default function ItemList() {
+	const [page, setPage] = useState(0);
+	const [rowsPerPage, setRowsPerPage] = useState(5);
+
+	function handleOnRowsPerPageChange(
+		event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) {
+		setRowsPerPage(parseInt(event.target.value, 10));
+		setPage(0);
+	}
+
+	const emptyRows =
+		page > 0 ? Math.max(0, (page + 1) * rowsPerPage - Items.length) : 0;
+
+	function getType(item: Item) {
+		if (!item.subtype) return item.type;
+		return `${item.type} (${item.subtype})`;
+	}
+
 	return (
 		<>
 			<Typography variant="h1">Items</Typography>
@@ -24,15 +53,14 @@ export default function ItemList() {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{Items.map((item) => (
-							<TableRow
-								key={`item-${item.id}`}
-								sx={{
-									"&:last-child td, &:last-child th": {
-										border: 0,
-									},
-								}}
-							>
+						{(rowsPerPage > 0
+							? Items.slice(
+									page * rowsPerPage,
+									page * rowsPerPage + rowsPerPage
+							  )
+							: Items
+						).map((item) => (
+							<TableRow key={`item-${item.id}`}>
 								<TableCell component="th" scope="row">
 									{item.name}
 								</TableCell>
@@ -43,14 +71,119 @@ export default function ItemList() {
 								</TableCell>
 							</TableRow>
 						))}
+						{emptyRows > 0 && (
+							<TableRow style={{ height: 53 * emptyRows }}>
+								<TableCell colSpan={6} />
+							</TableRow>
+						)}
 					</TableBody>
+					<TableFooter>
+						<TableRow>
+							<TablePagination
+								rowsPerPageOptions={[
+									5,
+									10,
+									25,
+									{ label: "All", value: -1 },
+								]}
+								// colSpan={3}
+								count={Items.length}
+								rowsPerPage={rowsPerPage}
+								page={page}
+								slotProps={{
+									select: {
+										inputProps: {
+											"aria-label": "rows per page",
+										},
+										native: true,
+									},
+								}}
+								onPageChange={(_, page) => setPage(page)}
+								onRowsPerPageChange={handleOnRowsPerPageChange}
+								ActionsComponent={TablePaginationActions}
+							/>
+						</TableRow>
+					</TableFooter>
 				</Table>
 			</TableContainer>
 		</>
 	);
 }
 
-function getType(item: Item) {
-	if (!item.subtype) return item.type;
-	return `${item.type} (${item.subtype})`;
+function TablePaginationActions(props: TablePaginationActionsProps) {
+	const theme = useTheme();
+	const { count, page, rowsPerPage, onPageChange } = props;
+
+	const handleFirstPageButtonClick = (
+		event: React.MouseEvent<HTMLButtonElement>
+	) => {
+		onPageChange(event, 0);
+	};
+
+	const handleBackButtonClick = (
+		event: React.MouseEvent<HTMLButtonElement>
+	) => {
+		onPageChange(event, page - 1);
+	};
+
+	const handleNextButtonClick = (
+		event: React.MouseEvent<HTMLButtonElement>
+	) => {
+		onPageChange(event, page + 1);
+	};
+
+	const handleLastPageButtonClick = (
+		event: React.MouseEvent<HTMLButtonElement>
+	) => {
+		onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+	};
+
+	return (
+		<Box sx={{ flexShrink: 0, ml: 2.5 }}>
+			<IconButton
+				onClick={handleFirstPageButtonClick}
+				disabled={page === 0}
+				aria-label="first page"
+			>
+				{theme.direction === "rtl" ? (
+					<LastPageIcon />
+				) : (
+					<FirstPageIcon />
+				)}
+			</IconButton>
+			<IconButton
+				onClick={handleBackButtonClick}
+				disabled={page === 0}
+				aria-label="previous page"
+			>
+				{theme.direction === "rtl" ? (
+					<KeyboardArrowRight />
+				) : (
+					<KeyboardArrowLeft />
+				)}
+			</IconButton>
+			<IconButton
+				onClick={handleNextButtonClick}
+				disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+				aria-label="next page"
+			>
+				{theme.direction === "rtl" ? (
+					<KeyboardArrowLeft />
+				) : (
+					<KeyboardArrowRight />
+				)}
+			</IconButton>
+			<IconButton
+				onClick={handleLastPageButtonClick}
+				disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+				aria-label="last page"
+			>
+				{theme.direction === "rtl" ? (
+					<FirstPageIcon />
+				) : (
+					<LastPageIcon />
+				)}
+			</IconButton>
+		</Box>
+	);
 }
