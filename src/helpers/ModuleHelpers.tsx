@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import { Module } from "./Types";
+import { Module } from "./Schemas";
 
 export function GetSubtitleElement(module: Module, isHeader = false) {
 	if (module.subtitle)

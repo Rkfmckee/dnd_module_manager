@@ -4,15 +4,15 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Module } from "../helpers/Types";
 import { GetSubtitleElement } from "../helpers/ModuleHelpers";
 import { Link } from "react-router-dom";
+import { Module } from "../helpers/Schemas";
 
-interface ModuleCardParams {
+interface ModuleCardProps {
 	module: Module;
 }
 
-export default function ModuleCard({ module }: ModuleCardParams) {
+export default function ModuleCard({ module }: ModuleCardProps) {
 	return (
 		<Card>
 			<CardMedia
