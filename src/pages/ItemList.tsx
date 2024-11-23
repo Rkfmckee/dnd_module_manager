@@ -34,8 +34,10 @@ export default function ItemList() {
 		setPage(0);
 	}
 
-	const emptyRows =
-		page > 0 ? Math.max(0, (page + 1) * rowsPerPage - items.length) : 0;
+	const currentItems = items.slice(
+		page * rowsPerPage,
+		page * rowsPerPage + rowsPerPage
+	);
 
 	return (
 		<>
@@ -47,36 +49,28 @@ export default function ItemList() {
 					<TableHead>
 						<TableRow>
 							<TableCell>Name</TableCell>
-							<TableCell>Type</TableCell>
-							<TableCell>Rarity</TableCell>
-							<TableCell>Attunement</TableCell>
+							<TableCell width="20%">Type</TableCell>
+							<TableCell width="20%">Rarity</TableCell>
+							<TableCell width="10%">Attunement</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{(rowsPerPage > 0
-							? items.slice(
-									page * rowsPerPage,
-									page * rowsPerPage + rowsPerPage
-							  )
-							: items
-						).map((item) => (
-							<Row key={`item-${item.id}`} item={item} />
-						))}
-						{emptyRows > 0 && (
-							<TableRow style={{ height: 53 * emptyRows }}>
-								<TableCell colSpan={5} />
+						{currentItems.length > 0 ? (
+							currentItems.map((item) => (
+								<Row key={`item-${item.id}`} item={item} />
+							))
+						) : (
+							<TableRow>
+								<TableCell colSpan={4} className="text-center">
+									No items available
+								</TableCell>
 							</TableRow>
 						)}
 					</TableBody>
 					<TableFooter>
 						<TableRow>
 							<TablePagination
-								rowsPerPageOptions={[
-									5,
-									10,
-									25,
-									{ label: "All", value: -1 },
-								]}
+								rowsPerPageOptions={[5, 10, 25]}
 								count={items.length}
 								rowsPerPage={rowsPerPage}
 								page={page}
