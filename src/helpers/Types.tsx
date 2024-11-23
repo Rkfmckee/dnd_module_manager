@@ -14,5 +14,6 @@ export type Item = {
 	rarity: string;
 	requiresAttunement: boolean;
 	description: string;
+	// curseDescription: string;
 	moduleId: number;
 };

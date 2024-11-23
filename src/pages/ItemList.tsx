@@ -1,24 +1,24 @@
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import LastPageIcon from "@mui/icons-material/LastPage";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
+import TableFooter from "@mui/material/TableFooter";
 import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import { TablePaginationActionsProps } from "@mui/material/TablePagination/TablePaginationActions";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
-import Items from "../assets/items.json";
-import { Item } from "../helpers/Types";
-import TableFooter from "@mui/material/TableFooter";
-import TablePagination from "@mui/material/TablePagination";
-import { useState } from "react";
-import { TablePaginationActionsProps } from "@mui/material/TablePagination/TablePaginationActions";
 import { useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import FirstPageIcon from "@mui/icons-material/FirstPage";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import LastPageIcon from "@mui/icons-material/LastPage";
+import { useState } from "react";
+import Items from "../assets/items.json";
+import Row from "../components/table/Row";
 
 export default function ItemList() {
 	const [page, setPage] = useState(0);
@@ -34,14 +34,11 @@ export default function ItemList() {
 	const emptyRows =
 		page > 0 ? Math.max(0, (page + 1) * rowsPerPage - Items.length) : 0;
 
-	function getType(item: Item) {
-		if (!item.subtype) return item.type;
-		return `${item.type} (${item.subtype})`;
-	}
-
 	return (
 		<>
-			<Typography variant="h1">Items</Typography>
+			<Typography variant="h1" gutterBottom>
+				Items
+			</Typography>
 			<TableContainer component={Paper}>
 				<Table sx={{ minWidth: 650 }} aria-label="item-list">
 					<TableHead>
@@ -60,20 +57,11 @@ export default function ItemList() {
 							  )
 							: Items
 						).map((item) => (
-							<TableRow key={`item-${item.id}`}>
-								<TableCell component="th" scope="row">
-									{item.name}
-								</TableCell>
-								<TableCell>{getType(item)}</TableCell>
-								<TableCell>{item.rarity}</TableCell>
-								<TableCell>
-									{item.requiresAttunement ? "Yes" : "No"}
-								</TableCell>
-							</TableRow>
+							<Row key={`item-${item.id}`} item={item} />
 						))}
 						{emptyRows > 0 && (
 							<TableRow style={{ height: 53 * emptyRows }}>
-								<TableCell colSpan={6} />
+								<TableCell colSpan={5} />
 							</TableRow>
 						)}
 					</TableBody>
@@ -86,7 +74,6 @@ export default function ItemList() {
 									25,
 									{ label: "All", value: -1 },
 								]}
-								// colSpan={3}
 								count={Items.length}
 								rowsPerPage={rowsPerPage}
 								page={page}
