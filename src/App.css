@@ -24,3 +24,13 @@
 .MuiTablePagination-displayedRows {
 	margin: 0;
 }
+
+.curse-box {
+	padding: 1em;
+	background-color: rgba(255, 0, 0, 0.2);
+	border-radius: 2em;
+}
+
+.description-header {
+	text-transform: uppercase;
+}

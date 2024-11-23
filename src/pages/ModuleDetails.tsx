@@ -3,13 +3,15 @@ import Modules from "../assets/modules.json";
 import NotFound from "./status/NotFound";
 import { Typography } from "@mui/material";
 import { GetSubtitleElement } from "../helpers/ModuleHelpers";
+import { ModuleSchema } from "../helpers/Schemas";
 
 export default function ModuleDetails() {
 	const { moduleId } = useParams();
 
-	const module = Modules.find(
-		(m) => moduleId != undefined && m.id == +moduleId
+	const moduleParse = ModuleSchema.safeParse(
+		Modules.find((m) => moduleId != undefined && m.id == +moduleId)
 	);
+	const module = moduleParse.success ? moduleParse.data : null;
 	if (!module) return <NotFound />;
 
 	return (

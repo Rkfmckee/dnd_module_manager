@@ -19,10 +19,13 @@ import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
 import Items from "../assets/items.json";
 import Row from "../components/table/Row";
+import { ItemsSchema } from "../helpers/Schemas";
 
 export default function ItemList() {
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(5);
+
+	const items = ItemsSchema.parse(Items);
 
 	function handleOnRowsPerPageChange(
 		event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -32,7 +35,7 @@ export default function ItemList() {
 	}
 
 	const emptyRows =
-		page > 0 ? Math.max(0, (page + 1) * rowsPerPage - Items.length) : 0;
+		page > 0 ? Math.max(0, (page + 1) * rowsPerPage - items.length) : 0;
 
 	return (
 		<>
@@ -51,11 +54,11 @@ export default function ItemList() {
 					</TableHead>
 					<TableBody>
 						{(rowsPerPage > 0
-							? Items.slice(
+							? items.slice(
 									page * rowsPerPage,
 									page * rowsPerPage + rowsPerPage
 							  )
-							: Items
+							: items
 						).map((item) => (
 							<Row key={`item-${item.id}`} item={item} />
 						))}
@@ -74,7 +77,7 @@ export default function ItemList() {
 									25,
 									{ label: "All", value: -1 },
 								]}
-								count={Items.length}
+								count={items.length}
 								rowsPerPage={rowsPerPage}
 								page={page}
 								slotProps={{

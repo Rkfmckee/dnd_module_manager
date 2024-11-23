@@ -4,7 +4,9 @@ import Collapse from "@mui/material/Collapse";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { useState } from "react";
-import { Item } from "../../helpers/Types";
+import { Item } from "../../helpers/Schemas";
+import parse from "html-react-parser";
+import { Typography } from "@mui/material";
 
 interface RowProps {
 	item: Item;
@@ -16,20 +18,6 @@ export default function Row({ item }: RowProps) {
 	function getType() {
 		if (!item.subtype) return item.type;
 		return `${item.type} (${item.subtype})`;
-	}
-
-	function getDescription() {
-		item.description = item.description.replace("\n", "<br />");
-		return item.description;
-
-		// if (item.curseDescription) {
-		// 	item.curseDescription = item.curseDescription.replace(
-		// 		"\n",
-		// 		"<br />"
-		// 	);
-
-		// 	return `${item.description}<br /><br /><strong><i>Curse:</i></strong> ${item.curseDescription}`;
-		// } else return item.description;
 	}
 
 	return (
@@ -48,7 +36,34 @@ export default function Row({ item }: RowProps) {
 					colSpan={6}
 				>
 					<Collapse in={open} timeout="auto" unmountOnExit>
-						<Box sx={{ margin: 1 }}>{getDescription()}</Box>
+						<Box sx={{ margin: 1 }}>
+							<Typography
+								variant="subtitle1"
+								className="description-header"
+								gutterBottom
+							>
+								<strong>Description:</strong>
+							</Typography>
+							{parse(item.description)}
+							{item.curseDescription && (
+								<>
+									<br />
+									<br />
+									<div className="curse-box">
+										<Typography
+											variant="subtitle1"
+											className="description-header"
+											gutterBottom
+										>
+											<strong>
+												<i>Curse:</i>
+											</strong>
+										</Typography>
+										{parse(item.curseDescription)}
+									</div>
+								</>
+							)}
+						</Box>
 					</Collapse>
 				</TableCell>
 			</TableRow>
