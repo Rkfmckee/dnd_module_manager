@@ -8,7 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import Items from "../assets/items.json";
-import Row from "../components/table/Row";
+import ItemRow from "../components/table/ItemRow";
 import TablePaginationFooter from "../components/table/TablePaginationFooter";
 import { ItemsSchema } from "../helpers/Schemas";
 
@@ -41,7 +41,7 @@ export default function ItemList() {
 					<TableBody>
 						{currentItems.length > 0 ? (
 							currentItems.map((item) => (
-								<Row key={`item-${item.id}`} item={item} />
+								<ItemRow key={`item-${item.id}`} item={item} />
 							))
 						) : (
 							<TableRow>

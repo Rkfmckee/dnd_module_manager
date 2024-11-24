@@ -12,7 +12,7 @@ interface RowProps {
 	item: Item;
 }
 
-export default function Row({ item }: RowProps) {
+export default function ItemRow({ item }: RowProps) {
 	const [open, setOpen] = useState(false);
 
 	return (
